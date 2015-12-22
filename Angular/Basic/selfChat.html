@@ -1,0 +1,38 @@
+<html ng-app="chatApp">
+	<head>
+		<title>Angular JS self chat</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	</head>
+	<body ng-controller="chatCtrl">
+		<ul>
+			<li ng-repeat="msg in messages">
+			{{msg.text}}
+			</li>
+			<li >
+			{{newMessage}}
+			</li>
+<form ng-submit="addMessage(newMessage)">
+<input type="text" ng-model="newMessage"/>
+<button type="submit">Add</button>
+</form>
+
+
+
+		<script>
+
+		app = angular.module('chatApp', []);
+		app.controller('chatCtrl', function ($scope) {
+				$scope.messages = [
+				{text:"Hello Angular!"}
+				,{text:"Hi Angular"}];
+				$scope.addMessage = function(text){
+					$scope.messages.push({text:text});
+					$scope.newMessage = "";
+				}
+			}
+		);
+
+
+		</script>
+	</body>
+</html>
