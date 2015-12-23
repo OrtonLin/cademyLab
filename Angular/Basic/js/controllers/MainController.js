@@ -1,3 +1,4 @@
 app.controller('MainController', ['$scope', function($scope) {
-  $scope.title = 'Top Sellers in Books';
+  $scope.title = 'This text contained in title attribute!';
+  $scope.promo = "A new attribute here";
 }]);
