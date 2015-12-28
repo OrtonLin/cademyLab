@@ -3,31 +3,30 @@
 		<title>Angular JS self chat</title>
 		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 	</head>
-	<body ng-controller="chatCtrl">
+	<body ng-controller="chatCtrl as cc">
 		<ul>
-			<li ng-repeat="msg in messages">
+			<li ng-repeat="msg in cc.messages">
 			{{msg.text}}
 			</li>
 			<li >
-			{{newMessage}}
+			{{cc.newMessage}}
 			</li>
-<form ng-submit="addMessage(newMessage)">
-<input type="text" ng-model="newMessage"/>
+<form ng-submit="cc.addMessage(cc.newMessage)">
+<input type="text" ng-model="cc.newMessage"/>
 <button type="submit">Add</button>
 </form>
-
-
 
 		<script>
 
 		app = angular.module('chatApp', []);
-		app.controller('chatCtrl', function ($scope) {
-				$scope.messages = [
+		app.controller('chatCtrl', function () {
+				var self = this;
+				self.messages = [
 				{text:"Hello Angular!"}
 				,{text:"Hi Angular"}];
-				$scope.addMessage = function(text){
-					$scope.messages.push({text:text});
-					$scope.newMessage = "";
+				self.addMessage = function(text){
+					self.messages.push({text:text});
+					self.newMessage = "";
 				}
 			}
 		);
